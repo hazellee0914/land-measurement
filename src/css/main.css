@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+@import url('./components/header.css');
+@import url('./components/bottom-navigation.css');
+
+html {
+  font-family:
+    'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f4f7f4;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+main {
+  padding: 20px;
+}
+
+button {
+  padding: 14px 22px;
+  border: 0;
+  border-radius: 12px;
+  color: white;
+  background-color: #16833b;
+  font-size: 16px;
+}

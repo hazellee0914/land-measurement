@@ -1,0 +1,40 @@
+.bottom-navigatioin {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  width: min(100%, 480px);
+  height: 68px;
+  transform: translate(-50%);
+
+  border-top: 1px solid #e4e8e4;
+  background-color: #ffffff;
+}
+
+.bottom-navigation__item {
+  display: grid;
+  place-content: center;
+  gap: 4px;
+
+  padding: 0;
+  margin: 0;
+
+  color: #667068;
+  background-color: transparent;
+
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.bottom-navigation__icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.bottom-navigation__item.is-active {
+  color: #16833b;
+  font-weight: 700;
+}
