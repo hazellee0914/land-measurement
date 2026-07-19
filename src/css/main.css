@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+@import url('./variables.css');
 @import url('./components/header.css');
 @import url('./components/bottom-navigation.css');
+@import url('./pages/home.css');
+@import url('./components/gps-card.css');
 
 html {
   font-family:
@@ -22,7 +25,7 @@ textarea {
 }
 
 main {
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 button {
@@ -32,4 +35,8 @@ button {
   color: white;
   background-color: #16833b;
   font-size: 16px;
+}
+
+[hidden] {
+  display: none !important;
 }

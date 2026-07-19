@@ -1,0 +1,10 @@
+:root {
+  --app-width: 370px;
+
+  --color-primary: #16833b;
+  --color-background: #f4f7f4;
+  --color-text: #172018;
+  --color-muted: #667068;
+
+  --bottom-navigation-height: 72px;
+}

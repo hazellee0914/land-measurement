@@ -1,0 +1,87 @@
+.gps-card {
+  position: relative;
+  z-index: 2;
+
+  /* margin: -24px 16px 20px; */
+  margin: -16px 16px 20px;
+  padding: 24px 20px;
+
+  border-radius: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 30px rgb(0 0 0 / 12%);
+
+  text-align: center;
+}
+
+.gps-card__icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+
+  margin: 0 auto 12px;
+
+  border-radius: 50%;
+  color: #89938c;
+  background-color: #edf1ed;
+
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.gps-card__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.gps-card__description {
+  margin: 6px 0 20px;
+  color: #667068;
+  font-size: 14px;
+}
+
+.gps-card__location-button,
+.gps-card__start-button {
+  width: 100%;
+  min-height: 54px;
+
+  border-radius: 14px;
+
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gps-card__location-button {
+  border: 1px solid #dfe5df;
+  color: #172018;
+  background-color: #ffffff;
+}
+
+.gps-card__start-button {
+  margin-top: 10px;
+  border: 0;
+  color: #ffffff;
+  background-color: #16833b;
+}
+
+.gps-card__start-button:disabled {
+  color: #8c9890;
+  background-color: #dfe6e0;
+  cursor: not-allowed;
+}
+
+.gps-card__demo-button {
+  margin-top: 12px;
+  padding: 10px;
+
+  border: 0;
+  color: #16833b;
+  background-color: transparent;
+
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
