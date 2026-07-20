@@ -4,6 +4,7 @@
 @import url('./components/bottom-navigation.css');
 @import url('./pages/home.css');
 @import url('./components/gps-card.css');
+@import url('./pages/measurement.css');
 
 html {
   font-family:

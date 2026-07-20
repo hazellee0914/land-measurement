@@ -23,10 +23,11 @@ export function HomePage() {
 }
 
 // 동작 함수
-export function initHomePage() {
+export function initHomePage(navigate) {
+  // 요소 찾기
   const locationButton = document.querySelector('[data-location-button]');
 
-  const startButton = document.querySelector('[data-start-button');
+  const startButton = document.querySelector('[data-start-button]');
 
   const demoButton = document.querySelector('[data-demo-button]');
 
@@ -40,6 +41,7 @@ export function initHomePage() {
 
   const gpsCard = document.querySelector('.gps-card');
 
+  // 나머지 요소 찾기...
   if (
     !locationButton ||
     !startButton ||
@@ -64,6 +66,7 @@ export function initHomePage() {
   }
 
   locationButton.addEventListener('click', async () => {
+    // GPS 확인 기능
     locationButton.disabled = true;
     locationButton.textContent = '위치를 확인하고 있습니다...';
 
@@ -115,6 +118,7 @@ export function initHomePage() {
   });
 
   demoButton.addEventListener('click', () => {
+    // 기본 위치 기능
     // 실패 아이콘을 체크 아이콘으로 변경
     gpsIcon.textContent = '✓';
     gpsTitle.textContent = '기본 위치 준비 완료';
@@ -128,5 +132,13 @@ export function initHomePage() {
 
     gpsCard.classList.remove('is-error');
     gpsCard.classList.add('is-ready');
+  });
+
+  startButton.addEventListener('click', () => {
+    if (startButton.disabled) {
+      return;
+    }
+
+    navigate('/measurement');
   });
 }
