@@ -1,3 +1,4 @@
+import { createMap } from '../services/mapService';
 export function MeasurementPage() {
   return `
     <div class="measurement-page">
@@ -13,9 +14,31 @@ export function MeasurementPage() {
       </header>
 
       <main class="measurement-page__content">
-        <h2>측정 화면</h2>
-        <p>다음 단계에서 실제 지도를 연결합니다.</p>
+      <div
+          id="measurement-map"
+          class="measurement-map"
+          aria-label="토지 경계 측정 지도"
+        ></div>
+      
       </main>
     </div>
   `;
+}
+
+export function initMeasurementPage(navigate) {
+  const mapElement = document.querySelector('#measurement-map');
+
+  const backButton = document.querySelector('[data-back-button]');
+
+  if (!mapElement || !backButton) {
+    console.error('측정 화면 요소를 찾을 수 없습니다.');
+
+    return;
+  }
+
+  createMap(mapElement);
+
+  backButton.addEventListener('click', () => {
+    navigate('/');
+  });
 }

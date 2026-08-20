@@ -7,6 +7,9 @@
 }
 
 .measurement-page__header {
+  position: relative;
+  z-index: 1000;
+
   display: grid;
   grid-template-columns: 48px 1fr 48px;
   align-items: center;
@@ -43,9 +46,16 @@
 }
 
 .measurement-page__content {
-  padding: 24px;
+  /* padding: 24px; */
+  padding: 0;
 }
 
 .measurement-page__content h2 {
   margin-top: 0;
+  height: calc(100vh - 64px);
+}
+
+.measurement-map {
+  width: 100%;
+  height: calc(100vh - 64px);
 }

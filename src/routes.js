@@ -1,6 +1,9 @@
 import { HomePage, initHomePage } from './pages/HomePage.js';
 
-import { MeasurementPage } from './pages/MeasurementPage.js';
+import {
+  MeasurementPage,
+  initMeasurementPage,
+} from './pages/MeasurementPage.js';
 
 export const routes = {
   '/': {
@@ -10,5 +13,6 @@ export const routes = {
 
   '/measurement': {
     page: MeasurementPage,
+    init: initMeasurementPage,
   },
 };
