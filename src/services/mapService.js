@@ -6,13 +6,13 @@ const DEFAULT_POSITION = {
   longitude: 126.978,
 };
 
-export function createMap(element) {
+export function createMap(element, position = DEFAULT_POSITION) {
   if (!element) {
     throw new Error('지도를 표시할 요소를 찾을 수 없습니다.');
   }
 
   const map = L.map(element).setView(
-    [DEFAULT_POSITION.latitude, DEFAULT_POSITION.longitude],
+    [position.latitude, position.longitude],
     16,
   );
 
@@ -22,7 +22,7 @@ export function createMap(element) {
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  L.circleMarker([DEFAULT_POSITION.latitude, DEFAULT_POSITION.longitude], {
+  L.circleMarker([position.latitude, position.longitude], {
     radius: 9,
     color: '#ffffff',
     weight: 3,

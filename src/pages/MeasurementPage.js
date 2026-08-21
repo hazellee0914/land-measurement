@@ -1,4 +1,6 @@
 import { createMap } from '../services/mapService';
+import { getPosition } from '../services/positionService';
+
 export function MeasurementPage() {
   return `
     <div class="measurement-page">
@@ -36,7 +38,10 @@ export function initMeasurementPage(navigate) {
     return;
   }
 
-  createMap(mapElement);
+  const position = getPosition();
+  console.log('측정 지도 좌표:', position);
+
+  createMap(mapElement, position ?? undefined);
 
   backButton.addEventListener('click', () => {
     navigate('/');

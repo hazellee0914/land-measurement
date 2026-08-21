@@ -2,6 +2,7 @@ import { Header } from '../components/Header.js';
 import { BottomNavigation } from '../components/BottomNavigation.js';
 import { GpsCard } from '../components/GpsCard.js';
 import { getCurrentPosition } from '../services/gpsService.js';
+import { savePosition } from '../services/positionService.js';
 
 export function HomePage() {
   return `
@@ -78,6 +79,11 @@ export function initHomePage(navigate) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
+      savePosition({
+        latitude,
+        longitude,
+      });
+
       console.log('위도:', latitude);
       console.log('경도:', longitude);
 
@@ -118,6 +124,11 @@ export function initHomePage(navigate) {
   });
 
   demoButton.addEventListener('click', () => {
+    savePosition({
+      latitude: 37.5665,
+      longitude: 126.978,
+    });
+
     // 기본 위치 기능
     // 실패 아이콘을 체크 아이콘으로 변경
     gpsIcon.textContent = '✓';
