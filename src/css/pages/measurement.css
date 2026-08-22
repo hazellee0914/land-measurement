@@ -47,6 +47,7 @@
 
 .measurement-page__content {
   /* padding: 24px; */
+  position: relative;
   padding: 0;
 }
 
@@ -58,4 +59,38 @@
 .measurement-map {
   width: 100%;
   height: calc(100vh - 64px);
+}
+
+.measurement-controls {
+  position: absolute;
+  z-index: 500;
+  right: 16px;
+  bottom: 24px;
+  left: 16px;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+}
+
+.measurement-controls button {
+  min-height: 54px;
+  padding: 0 14px;
+  border-radius: 14px;
+
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.measurement-controls__complete {
+  border: 0;
+  color: #ffffff;
+  background-color: #16833b;
+}
+
+.measurement-controls button:disabled {
+  color: #8c9890;
+  background-color: #dfe6e0;
+  cursor: not-allowed;
 }

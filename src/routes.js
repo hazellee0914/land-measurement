@@ -5,6 +5,8 @@ import {
   initMeasurementPage,
 } from './pages/MeasurementPage.js';
 
+import { ResultPage, initResultPage } from './pages/ResultPage';
+
 export const routes = {
   '/': {
     page: HomePage,
@@ -14,5 +16,10 @@ export const routes = {
   '/measurement': {
     page: MeasurementPage,
     init: initMeasurementPage,
+  },
+
+  '/result': {
+    page: ResultPage,
+    init: initResultPage,
   },
 };
