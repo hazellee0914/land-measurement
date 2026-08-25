@@ -91,3 +91,37 @@
   color: #16833b;
   font-size: 20px;
 }
+
+.result-card__area {
+  margin: 24px 0;
+  padding: 20px;
+
+  border-radius: 18px;
+  background-color: #f2f8f3;
+}
+
+.result-card__area span {
+  display: block;
+
+  margin-bottom: 8px;
+  color: #667068;
+  font-size: 14px;
+}
+
+.result-card__area strong {
+  display: block;
+
+  color: #16833b;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.result-card__area small {
+  display: block;
+
+  margin-top: 8px;
+  color: #667068;
+
+  font-size: 16px;
+  font-weight: 500;
+}

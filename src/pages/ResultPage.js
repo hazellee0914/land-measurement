@@ -1,7 +1,12 @@
 import { getBoundaryPoints } from '../services/measurementService.js';
+import { calculateArea } from '../utils/calculator.js';
 
 export function ResultPage() {
   const boundaryPoints = getBoundaryPoints();
+
+  const area = calculateArea(boundaryPoints);
+  const roundedArea = Math.round(area);
+  const pyeong = Math.round(area / 3.3058);
 
   return `
   
@@ -25,6 +30,11 @@ export function ResultPage() {
 
           <h2>측정이 완료되었습니다!</h2>
 
+          <div class="result-card__area">
+  <span>면적</span>
+  <strong>${roundedArea.toLocaleString()} m²</strong>
+  <small>(약 ${pyeong.toLocaleString()} 평)</small>
+</div>
           <p>
             선택한 경계점
             <strong>${boundaryPoints.length}개</strong>
