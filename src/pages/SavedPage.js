@@ -1,5 +1,10 @@
 import { getSavedMeasurements } from '../services/saveMeasurementService.js';
 
+import {
+  BottomNavigation,
+  initBottomNavigation,
+} from '../components/BottomNavigation.js';
+
 function formatSavedDate(savedAt) {
   return new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
@@ -59,6 +64,9 @@ export function SavedPage() {
       <main class="saved-page__content">
         ${measurementList}
       </main>
+
+          ${BottomNavigation('saved')}
+
     </div>
   `;
 }
@@ -69,6 +77,8 @@ export function initSavedPage(navigate) {
   if (!backButton) {
     return;
   }
+
+  initBottomNavigation(navigate);
 
   backButton.addEventListener('click', () => {
     navigate('/');

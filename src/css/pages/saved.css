@@ -2,6 +2,7 @@
   width: min(100%, var(--app-width));
   min-height: 100vh;
   margin: 0 auto;
+  padding-bottom: var(--bottom-navigation-height);
 
   background-color: #f4f7f4;
 }
