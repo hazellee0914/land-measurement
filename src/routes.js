@@ -7,6 +7,8 @@ import {
 
 import { ResultPage, initResultPage } from './pages/ResultPage';
 
+import { SavedPage, initSavedPage } from './pages/SavedPage.js';
+
 export const routes = {
   '/': {
     page: HomePage,
@@ -21,5 +23,10 @@ export const routes = {
   '/result': {
     page: ResultPage,
     init: initResultPage,
+  },
+
+  '/saved': {
+    page: SavedPage,
+    init: initSavedPage,
   },
 };

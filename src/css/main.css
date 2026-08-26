@@ -6,6 +6,7 @@
 @import url('./components/gps-card.css');
 @import url('./pages/measurement.css');
 @import url('./pages/result.css');
+@import url('./pages/saved.css');
 
 html {
   font-family:
