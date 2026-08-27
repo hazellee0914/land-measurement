@@ -2,12 +2,15 @@ import { getBoundaryPoints } from '../services/measurementService.js';
 import { calculateArea } from '../utils/calculator.js';
 import { saveMeasurement } from '../services/saveMeasurementService.js';
 
+import { AREA_UNIT, getAreaUnit } from '../services/settingsService.js';
+
 export function ResultPage() {
   const boundaryPoints = getBoundaryPoints();
 
   const area = calculateArea(boundaryPoints);
   const roundedArea = Math.round(area);
   const pyeong = Math.round(area / 3.3058);
+  const areaUnit = getAreaUnit();
 
   return `
   
@@ -34,7 +37,7 @@ export function ResultPage() {
           <div class="result-card__area">
             <span>면적</span>
             <strong>${roundedArea.toLocaleString()} m²</strong>
-            <small>(약 ${pyeong.toLocaleString()} 평)</small>
+            ${areaUnit === AREA_UNIT.BOTH ? `<small>(약 ${pyeong.toLocaleString()} 평)</small>` : ''}
           </div>
           <button
               class="result-card__save-button"

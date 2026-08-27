@@ -9,6 +9,8 @@ import { ResultPage, initResultPage } from './pages/ResultPage';
 
 import { SavedPage, initSavedPage } from './pages/SavedPage.js';
 
+import { SettingsPage, initSettingsPage } from './pages/SettingsPage.js';
+
 export const routes = {
   '/': {
     page: HomePage,
@@ -28,5 +30,10 @@ export const routes = {
   '/saved': {
     page: SavedPage,
     init: initSavedPage,
+  },
+
+  '/settings': {
+    page: SettingsPage,
+    init: initSettingsPage,
   },
 };
