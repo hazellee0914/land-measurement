@@ -122,3 +122,10 @@
   color: #667068;
   font-size: 13px;
 }
+
+.settings-delete-button:disabled {
+  border-color: #aeb7b0;
+  color: #8c9890;
+  background-color: #edf1ed;
+  cursor: default;
+}

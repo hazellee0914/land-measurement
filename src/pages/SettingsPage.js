@@ -9,6 +9,8 @@ import {
   saveAreaUnit,
 } from '../services/settingsService.js';
 
+import { clearSavedMeasurements } from '../services/saveMeasurementService.js';
+
 export function SettingsPage() {
   const areaUnit = getAreaUnit();
 
@@ -82,6 +84,10 @@ export function initSettingsPage(navigate) {
 
   const areaUnitInputs = document.querySelectorAll('input[name="area-unit"]');
 
+  const deleteButton = document.querySelector(
+    '[data-delete-measurements-button]',
+  );
+
   areaUnitInputs.forEach((input) => {
     input.addEventListener('change', () => {
       if (!input.checked) {
@@ -92,5 +98,26 @@ export function initSettingsPage(navigate) {
 
       console.log('면적 표시 단위:', input.value);
     });
+  });
+
+  if (!deleteButton) {
+    return;
+  }
+
+  deleteButton.addEventListener('click', () => {
+    const shouldDelete = window.confirm(
+      '저장된 측정 결과를 모두 삭제하시겠습니까?',
+    );
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    clearSavedMeasurements();
+
+    deleteButton.textContent = '삭제 완료';
+    deleteButton.disabled = true;
+
+    window.alert('저장 목록을 모두 삭제했습니다.');
   });
 }

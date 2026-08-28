@@ -5,11 +5,12 @@ export const AREA_UNIT = {
   SQUARE_METER: 'square-meter',
 };
 
-// 면적 표시 단위를 저장하는 함수
+// 선택한 설정을 저장(면적 단위 저장)
 export function saveAreaUnit(areaUnit) {
   localStorage.setItem(AREA_UNIT_KEY, areaUnit);
 }
 
+// 저장했던 설정을 다시 가져옴 (면적 단위 가져오기)
 export function getAreaUnit() {
   const savedAreaUnit = localStorage.getItem(AREA_UNIT_KEY);
 

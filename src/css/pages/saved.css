@@ -88,3 +88,23 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+.saved-card__delete-button {
+  justify-self: end;
+
+  padding: 8px 12px;
+  border: 1px solid #e44747;
+  border-radius: 10px;
+
+  color: #d93636;
+  background-color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.saved-card__delete-button:active {
+  color: #ffffff;
+  background-color: #d93636;
+}

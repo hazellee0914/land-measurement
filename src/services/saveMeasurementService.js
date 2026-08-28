@@ -21,10 +21,29 @@ export function saveMeasurement(measurement) {
 
   savedMeasurements.unshift(newMeasurement);
 
+  const limitedMeasurements = savedMeasurements.slice(0, 20);
+
   localStorage.setItem(
     SAVED_MEASUREMENTS_KEY,
-    JSON.stringify(savedMeasurements),
+    JSON.stringify(limitedMeasurements),
   );
 
   return newMeasurement;
+}
+
+export function clearSavedMeasurements() {
+  localStorage.removeItem(SAVED_MEASUREMENTS_KEY);
+}
+
+export function deleteSavedMeasurement(measurementId) {
+  const savedMeasurements = getSavedMeasurements();
+
+  const remainingMeasurements = savedMeasurements.filter(
+    (measurement) => measurement.id !== measurementId,
+  );
+
+  localStorage.setItem(
+    SAVED_MEASUREMENTS_KEY,
+    JSON.stringify(remainingMeasurements),
+  );
 }

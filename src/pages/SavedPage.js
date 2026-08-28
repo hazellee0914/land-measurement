@@ -1,9 +1,12 @@
-import { getSavedMeasurements } from '../services/saveMeasurementService.js';
-
 import {
   BottomNavigation,
   initBottomNavigation,
 } from '../components/BottomNavigation.js';
+
+import {
+  deleteSavedMeasurement,
+  getSavedMeasurements,
+} from '../services/saveMeasurementService.js';
 
 function formatSavedDate(savedAt) {
   return new Intl.DateTimeFormat('ko-KR', {
@@ -41,6 +44,14 @@ export function SavedPage() {
                   약 ${measurement.pyeong.toLocaleString()}평 ·
                   경계점 ${measurement.pointCount}개
                 </span>
+
+                <button
+                  class="saved-card__delete-button"
+                  type="button"
+                  data-delete-measurement-id="${measurement.id}"
+                >
+                  삭제
+                </button>
               </article>
             `,
           )
@@ -79,6 +90,26 @@ export function initSavedPage(navigate) {
   }
 
   initBottomNavigation(navigate);
+
+  const deleteButtons = document.querySelectorAll(
+    '[data-delete-measurement-id]',
+  );
+
+  deleteButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const shouldDelete = window.confirm('이 측정 결과를 삭제하시겠습니까?');
+
+      if (!shouldDelete) {
+        return;
+      }
+
+      const measurementId = Number(button.dataset.deleteMeasurementId);
+
+      deleteSavedMeasurement(measurementId);
+
+      navigate('/saved');
+    });
+  });
 
   backButton.addEventListener('click', () => {
     navigate('/');
