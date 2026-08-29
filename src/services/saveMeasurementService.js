@@ -47,3 +47,13 @@ export function deleteSavedMeasurement(measurementId) {
     JSON.stringify(remainingMeasurements),
   );
 }
+
+// ID 결과 찾는 함수 추가
+export function getSavedMeasurementById(measurementId) {
+  const savedMeasurements = getSavedMeasurements();
+
+  return (
+    savedMeasurements.find((measurement) => measurement.id === measurementId) ??
+    null
+  );
+}

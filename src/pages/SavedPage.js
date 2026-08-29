@@ -45,6 +45,11 @@ export function SavedPage() {
                   경계점 ${measurement.pointCount}개
                 </span>
 
+                <button class="saved-card__detail-button"
+                type="button"
+                data-view-measurement-id="${measurement.id}"
+                >상세 보기</button>
+
                 <button
                   class="saved-card__delete-button"
                   type="button"
@@ -113,5 +118,15 @@ export function initSavedPage(navigate) {
 
   backButton.addEventListener('click', () => {
     navigate('/');
+  });
+
+  const detailButtons = document.querySelectorAll('[data-view-measurement-id]');
+
+  detailButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const measurementId = button.dataset.viewMeasurementId;
+
+      navigate(`/saved-detail?id=${measurementId}`);
+    });
   });
 }

@@ -8,6 +8,7 @@
 @import url('./pages/result.css');
 @import url('./pages/saved.css');
 @import url('./pages/settings.css');
+@import url('./pages/saved-detail.css');
 
 html {
   font-family:

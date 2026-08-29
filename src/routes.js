@@ -1,4 +1,8 @@
 import { HomePage, initHomePage } from './pages/HomePage.js';
+import {
+  SavedDetailPage,
+  initSavedDetailPage,
+} from './pages/SavedDetailPage.js';
 
 import {
   MeasurementPage,
@@ -35,5 +39,10 @@ export const routes = {
   '/settings': {
     page: SettingsPage,
     init: initSettingsPage,
+  },
+
+  '/saved-detail': {
+    page: SavedDetailPage,
+    init: initSavedDetailPage,
   },
 };
