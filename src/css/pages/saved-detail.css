@@ -18,6 +18,32 @@
   background-color: #ffffff;
 }
 
+.saved-detail-card__address {
+  margin-top: 20px;
+  padding: 16px;
+
+  border-radius: 16px;
+  background-color: #f7f9f7;
+
+  text-align: left;
+}
+
+.saved-detail-card__address span {
+  display: block;
+
+  margin-bottom: 7px;
+  color: #667068;
+  font-size: 13px;
+}
+
+.saved-detail-card__address strong {
+  color: #172018;
+
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
 .saved-detail-page__header h1 {
   margin: 0;
 

@@ -49,3 +49,25 @@ export function calculateArea(points) {
 
   return Math.abs(area) / 2;
 }
+
+export function calculateCenter(points) {
+  if (points.length === 0) {
+    return null;
+  }
+
+  const total = points.reduce(
+    (result, point) => ({
+      latitude: result.latitude + point.latitude,
+      longitude: result.longitude + point.longitude,
+    }),
+    {
+      latitude: 0,
+      longitude: 0,
+    },
+  );
+
+  return {
+    latitude: total.latitude / points.length,
+    longitude: total.longitude / points.length,
+  };
+}

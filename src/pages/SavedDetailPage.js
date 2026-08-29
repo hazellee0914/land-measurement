@@ -61,6 +61,15 @@ export function SavedDetailPage() {
             ${formatSavedDate(measurement.savedAt)}
           </time>
 
+          <div class="saved-detail-card__address">
+            <span>지도 기준 위치</span>
+
+            <strong>
+              ${measurement.fullAddress ?? '주소 정보 없음'}
+            </strong>
+          </div>
+
+
           <div class="saved-detail-card__area">
             <span>면적</span>
 
@@ -78,6 +87,10 @@ export function SavedDetailPage() {
             <strong>${measurement.pointCount}개</strong>
           </p>
         </article>
+
+        <small class="saved-detail-card__attribution">
+          주소 데이터 © OpenStreetMap contributors
+        </small>
       </main>
     </div>
   `;

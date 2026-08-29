@@ -70,6 +70,15 @@
   box-shadow: 0 8px 22px rgb(0 0 0 / 7%);
 }
 
+.saved-card__address {
+  margin: 0;
+
+  color: #172018;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
 .saved-card time {
   color: #667068;
   font-size: 13px;

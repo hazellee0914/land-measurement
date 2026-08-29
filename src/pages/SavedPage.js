@@ -32,6 +32,9 @@ export function SavedPage() {
           .map(
             (measurement) => `
               <article class="saved-card">
+               <p class="saved-card__address">
+                📍 ${measurement.shortAddress ?? '주소 정보 없음'}
+              </p>
                 <time datetime="${measurement.savedAt}">
                   ${formatSavedDate(measurement.savedAt)}
                 </time>

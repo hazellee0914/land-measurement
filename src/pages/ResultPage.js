@@ -1,6 +1,8 @@
 import { getBoundaryPoints } from '../services/measurementService.js';
-import { calculateArea } from '../utils/calculator.js';
 import { saveMeasurement } from '../services/saveMeasurementService.js';
+import { calculateArea, calculateCenter } from '../utils/calculator.js';
+
+import { getAddressFromPosition } from '../services/geocodingService.js';
 
 import { AREA_UNIT, getAreaUnit } from '../services/settingsService.js';
 
@@ -66,7 +68,7 @@ export function initResultPage(navigate) {
   }
 
   // 저장 버튼 이벤트 추가
-  saveButton.addEventListener('click', () => {
+  saveButton.addEventListener('click', async () => {
     const boundaryPoints = getBoundaryPoints();
 
     if (boundaryPoints.length < 3) {
@@ -76,14 +78,33 @@ export function initResultPage(navigate) {
     const area = Math.round(calculateArea(boundaryPoints));
 
     const pyeong = Math.round(area / 3.3058);
+    const centerPosition = calculateCenter(boundaryPoints);
+
+    let address = {
+      shortAddress: '주소 정보 없음',
+      fullAddress: '주소 정보 없음',
+    };
+
+    try {
+      if (centerPosition) {
+        address = await getAddressFromPosition(centerPosition);
+      }
+    } catch (error) {
+      console.warn('주소 확인 실패:', error.message);
+    }
 
     saveMeasurement({
       area,
       pyeong,
       pointCount: boundaryPoints.length,
       boundaryPoints,
+      centerPosition,
+      shortAddress: address.shortAddress,
+      fullAddress: address.fullAddress,
+      addressSource: 'OpenStreetMap',
     });
 
+    // 중복 클릭 방지
     saveButton.textContent = '저장 완료';
     saveButton.disabled = true;
 
