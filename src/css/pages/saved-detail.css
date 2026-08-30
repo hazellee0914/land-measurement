@@ -133,3 +133,18 @@
   color: #16833b;
   font-size: 18px;
 }
+
+.saved-detail-map {
+  width: 100%;
+  height: 220px;
+
+  margin-top: 20px;
+  border-radius: 16px;
+
+  overflow: hidden;
+  background-color: #e5ebe5;
+}
+
+.saved-detail-map .leaflet-control-attribution {
+  font-size: 9px;
+}

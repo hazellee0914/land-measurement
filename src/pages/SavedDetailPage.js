@@ -1,5 +1,7 @@
 import { getSavedMeasurementById } from '../services/saveMeasurementService.js';
 
+import { createBoundaryPreviewMap } from '../services/mapService.js';
+
 function formatSavedDate(savedAt) {
   return new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
@@ -61,6 +63,13 @@ export function SavedDetailPage() {
             ${formatSavedDate(measurement.savedAt)}
           </time>
 
+          <div
+            id="saved-detail-map"
+            class="saved-detail-map"
+            aria-label="저장된 토지 경계 지도"
+          ></div>
+
+
           <div class="saved-detail-card__address">
             <span>지도 기준 위치</span>
 
@@ -99,8 +108,20 @@ export function SavedDetailPage() {
 export function initSavedDetailPage(navigate) {
   const backButton = document.querySelector('[data-detail-back-button]');
 
+  const mapElement = document.querySelector('#saved-detail-map');
+
   if (!backButton) {
     return;
+  }
+
+  const searchParams = new URLSearchParams(window.location.search);
+
+  const measurementId = Number(searchParams.get('id'));
+
+  const measurement = getSavedMeasurementById(measurementId);
+
+  if (mapElement && measurement && Array.isArray(measurement.boundaryPoints)) {
+    createBoundaryPreviewMap(mapElement, measurement.boundaryPoints);
   }
 
   backButton.addEventListener('click', () => {
