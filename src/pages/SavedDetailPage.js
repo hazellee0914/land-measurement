@@ -74,7 +74,11 @@ export function SavedDetailPage() {
             <span>지도 기준 위치</span>
 
             <strong>
-              ${measurement.fullAddress ?? '주소 정보 없음'}
+              ${
+                measurement.shortAddress ??
+                measurement.fullAddress ??
+                '주소 정보 없음'
+              }
             </strong>
           </div>
 
@@ -90,6 +94,13 @@ export function SavedDetailPage() {
               약 ${measurement.pyeong.toLocaleString()}평
             </small>
           </div>
+
+          <p>
+            경계선 총길이
+              <strong>
+                ${measurement.perimeter?.toLocaleString() ?? '-'}m
+              </strong>
+          </p>
 
           <p>
             선택한 경계점

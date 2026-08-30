@@ -45,6 +45,7 @@ export function SavedPage() {
 
                 <span>
                   약 ${measurement.pyeong.toLocaleString()}평 ·
+                  둘레 ${measurement.perimeter?.toLocaleString() ?? '-'}m ·
                   경계점 ${measurement.pointCount}개
                 </span>
 

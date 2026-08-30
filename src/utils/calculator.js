@@ -5,6 +5,29 @@ function toRadians(degree) {
   return (degree * Math.PI) / 180;
 }
 
+function calculateDistance(firstPoint, secondPoint) {
+  const firstLatitude = toRadians(firstPoint.latitude);
+  const secondLatitude = toRadians(secondPoint.latitude);
+
+  const latitudeDifference = toRadians(
+    secondPoint.latitude - firstPoint.latitude,
+  );
+
+  const longitudeDifference = toRadians(
+    secondPoint.longitude - firstPoint.longitude,
+  );
+
+  const value =
+    Math.sin(latitudeDifference / 2) ** 2 +
+    Math.cos(firstLatitude) *
+      Math.cos(secondLatitude) *
+      Math.sin(longitudeDifference / 2) ** 2;
+
+  const angle = 2 * Math.atan2(Math.sqrt(value), Math.sqrt(1 - value));
+
+  return EARTH_RADIUS * angle;
+}
+
 export function calculateArea(points) {
   if (points.length < 3) {
     return 0;
@@ -70,4 +93,22 @@ export function calculateCenter(points) {
     latitude: total.latitude / points.length,
     longitude: total.longitude / points.length,
   };
+}
+
+export function calculatePerimeter(points) {
+  if (points.length < 3) {
+    return 0;
+  }
+
+  let perimeter = 0;
+
+  for (let index = 0; index < points.length; index += 1) {
+    const currentPoint = points[index];
+
+    const nextPoint = points[(index + 1) % points.length];
+
+    perimeter += calculateDistance(currentPoint, nextPoint);
+  }
+
+  return perimeter;
 }

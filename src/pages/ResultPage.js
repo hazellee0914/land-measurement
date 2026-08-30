@@ -1,17 +1,23 @@
 import { getBoundaryPoints } from '../services/measurementService.js';
 import { saveMeasurement } from '../services/saveMeasurementService.js';
-import { calculateArea, calculateCenter } from '../utils/calculator.js';
 
 import { getAddressFromPosition } from '../services/geocodingService.js';
 
 import { AREA_UNIT, getAreaUnit } from '../services/settingsService.js';
 
+import {
+  calculateArea,
+  calculateCenter,
+  calculatePerimeter,
+} from '../utils/calculator.js';
+
 export function ResultPage() {
   const boundaryPoints = getBoundaryPoints();
 
-  const area = calculateArea(boundaryPoints);
+  const area = Math.round(calculateArea(boundaryPoints));
   const roundedArea = Math.round(area);
   const pyeong = Math.round(area / 3.3058);
+  const perimeter = Math.round(calculatePerimeter(boundaryPoints));
   const areaUnit = getAreaUnit();
 
   return `
@@ -41,6 +47,19 @@ export function ResultPage() {
             <strong>${roundedArea.toLocaleString()} m²</strong>
             ${areaUnit === AREA_UNIT.BOTH ? `<small>(약 ${pyeong.toLocaleString()} 평)</small>` : ''}
           </div>
+
+          <div class="result-card__summary">
+            <p>
+              <span>둘레</span>
+              <strong>${perimeter.toLocaleString()}m</strong>
+            </p>
+
+            <p>
+              <span>경계점</span>
+              <strong>${boundaryPoints.length}개</strong>
+            </p>
+          </div>
+
           <button
               class="result-card__save-button"
               type="button"
@@ -48,10 +67,6 @@ export function ResultPage() {
             >
               저장
           </button>
-          <p>
-            선택한 경계점
-            <strong>${boundaryPoints.length}개</strong>
-          </p>
         </div>
       </main>
     </div>
@@ -77,6 +92,8 @@ export function initResultPage(navigate) {
 
     const area = Math.round(calculateArea(boundaryPoints));
 
+    const perimeter = Math.round(calculatePerimeter(boundaryPoints));
+
     const pyeong = Math.round(area / 3.3058);
     const centerPosition = calculateCenter(boundaryPoints);
 
@@ -96,6 +113,7 @@ export function initResultPage(navigate) {
     saveMeasurement({
       area,
       pyeong,
+      perimeter,
       pointCount: boundaryPoints.length,
       boundaryPoints,
       centerPosition,
