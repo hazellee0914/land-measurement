@@ -1,5 +1,8 @@
 import { Header } from '../components/Header.js';
-import { BottomNavigation } from '../components/BottomNavigation.js';
+import {
+  BottomNavigation,
+  initBottomNavigation,
+} from '../components/BottomNavigation.js';
 import { GpsCard } from '../components/GpsCard.js';
 import { getCurrentPosition } from '../services/gpsService.js';
 import { savePosition } from '../services/positionService.js';
@@ -25,6 +28,8 @@ export function HomePage() {
 
 // 동작 함수
 export function initHomePage(navigate) {
+  // 하단 측정·목록·설정 버튼 연결
+  initBottomNavigation(navigate);
   // 요소 찾기
   const locationButton = document.querySelector('[data-location-button]');
 

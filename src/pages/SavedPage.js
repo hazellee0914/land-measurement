@@ -8,6 +8,8 @@ import {
   getSavedMeasurements,
 } from '../services/saveMeasurementService.js';
 
+import { AREA_UNIT, getAreaUnit } from '../services/settingsService.js';
+
 function formatSavedDate(savedAt) {
   return new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
@@ -20,7 +22,7 @@ function formatSavedDate(savedAt) {
 
 export function SavedPage() {
   const savedMeasurements = getSavedMeasurements();
-
+  const areaUnit = getAreaUnit();
   const measurementList =
     savedMeasurements.length === 0
       ? `
@@ -43,11 +45,17 @@ export function SavedPage() {
                   ${measurement.area.toLocaleString()} m²
                 </strong>
 
-                <span>
-                  약 ${measurement.pyeong.toLocaleString()}평 ·
-                  둘레 ${measurement.perimeter?.toLocaleString() ?? '-'}m ·
-                  경계점 ${measurement.pointCount}개
-                </span>
+              <span>
+                ${
+                  areaUnit === AREA_UNIT.BOTH
+                    ? `약 ${measurement.pyeong.toLocaleString()}평 ·`
+                    : ''
+                }
+
+              경계선 총길이 ${measurement.perimeter?.toLocaleString() ?? '-'}m ·
+
+              경계점 ${measurement.pointCount}개
+</span>
 
                 <button class="saved-card__detail-button"
                 type="button"

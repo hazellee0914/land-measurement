@@ -2,6 +2,8 @@ import { getSavedMeasurementById } from '../services/saveMeasurementService.js';
 
 import { createBoundaryPreviewMap } from '../services/mapService.js';
 
+import { AREA_UNIT, getAreaUnit } from '../services/settingsService.js';
+
 function formatSavedDate(savedAt) {
   return new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
@@ -18,6 +20,8 @@ export function SavedDetailPage() {
   const measurementId = Number(searchParams.get('id'));
 
   const measurement = getSavedMeasurementById(measurementId);
+
+  const areaUnit = getAreaUnit();
 
   if (!measurement) {
     return `
@@ -90,9 +94,15 @@ export function SavedDetailPage() {
               ${measurement.area.toLocaleString()} m²
             </strong>
 
+          ${
+            areaUnit === AREA_UNIT.BOTH
+              ? `
             <small>
               약 ${measurement.pyeong.toLocaleString()}평
             </small>
+                `
+              : ''
+          }
           </div>
 
           <p>
