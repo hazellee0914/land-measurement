@@ -178,3 +178,19 @@
   font-size: 20px;
   font-weight: 800;
 }
+
+.result-card__retry-button {
+  width: 100%;
+  min-height: 54px;
+
+  margin-top: 10px;
+  border: 1px solid #dfe5df;
+  border-radius: 14px;
+
+  color: #172018;
+  background-color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}

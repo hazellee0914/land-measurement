@@ -1,4 +1,7 @@
-import { getBoundaryPoints } from '../services/measurementService.js';
+import {
+  clearBoundaryPoints,
+  getBoundaryPoints,
+} from '../services/measurementService.js';
 import { saveMeasurement } from '../services/saveMeasurementService.js';
 
 import { getAddressFromPosition } from '../services/geocodingService.js';
@@ -67,6 +70,13 @@ export function ResultPage() {
             >
               저장
           </button>
+          <button
+            class="result-card__retry-button"
+            type="button"
+            data-retry-measurement-button
+          >
+            다시 측정
+          </button>
         </div>
       </main>
     </div>
@@ -78,7 +88,9 @@ export function initResultPage(navigate) {
 
   const saveButton = document.querySelector('[data-save-result-button]');
 
-  if (!backButton || !saveButton) {
+  const retryButton = document.querySelector('[data-retry-measurement-button]');
+
+  if (!backButton || !saveButton || !retryButton) {
     return;
   }
 
@@ -129,6 +141,20 @@ export function initResultPage(navigate) {
     console.log('측정 결과가 저장되었습니다.');
 
     navigate('/saved');
+  });
+
+  retryButton.addEventListener('click', () => {
+    const shouldRetry = window.confirm(
+      '새로 측정하시겠습니까? 저장하지 않은 현재 결과는 사라집니다.',
+    );
+
+    if (!shouldRetry) {
+      return;
+    }
+
+    clearBoundaryPoints();
+
+    navigate('/measurement');
   });
 
   // 뒤로 가기 이벤트

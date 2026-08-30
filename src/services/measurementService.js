@@ -13,3 +13,7 @@ export function getBoundaryPoints() {
 
   return JSON.parse(points);
 }
+
+export function clearBoundaryPoints() {
+  sessionStorage.removeItem(BOUNDARY_POINTS_KEY);
+}
