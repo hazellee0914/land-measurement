@@ -70,6 +70,15 @@ export function ResultPage() {
             >
               저장
           </button>
+
+          <button
+            class="result-card__share-button"
+            type="button"
+            data-share-result-button
+          >
+            공유
+          </button>
+
           <button
             class="result-card__retry-button"
             type="button"
@@ -90,7 +99,9 @@ export function initResultPage(navigate) {
 
   const retryButton = document.querySelector('[data-retry-measurement-button]');
 
-  if (!backButton || !saveButton || !retryButton) {
+  const shareButton = document.querySelector('[data-share-result-button]');
+
+  if (!backButton || !saveButton || !retryButton || !shareButton) {
     return;
   }
 
@@ -155,6 +166,61 @@ export function initResultPage(navigate) {
     clearBoundaryPoints();
 
     navigate('/measurement');
+  });
+
+  shareButton.addEventListener('click', async () => {
+    const boundaryPoints = getBoundaryPoints();
+
+    if (boundaryPoints.length < 3) {
+      return;
+    }
+
+    const area = Math.round(calculateArea(boundaryPoints));
+
+    const pyeong = Math.round(area / 3.3058);
+
+    const perimeter = Math.round(calculatePerimeter(boundaryPoints));
+
+    const shareText = [
+      '토지면적 측정 결과',
+      `면적: ${area.toLocaleString()}m²`,
+      `평수: 약 ${pyeong.toLocaleString()}평`,
+      `경계선 총길이: ${perimeter.toLocaleString()}m`,
+      `경계점: ${boundaryPoints.length}개`,
+    ].join('\n');
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: '토지면적 측정 결과',
+          text: shareText,
+        });
+
+        return;
+      }
+
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(shareText);
+
+        shareButton.textContent = '결과 복사 완료';
+
+        window.setTimeout(() => {
+          shareButton.textContent = '공유';
+        }, 2000);
+
+        return;
+      }
+
+      window.alert('이 브라우저에서는 공유 기능을 지원하지 않습니다.');
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        return;
+      }
+
+      console.error('공유 실패:', error);
+
+      window.alert('측정 결과를 공유할 수 없습니다.');
+    }
   });
 
   // 뒤로 가기 이벤트

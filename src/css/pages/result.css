@@ -194,3 +194,19 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.result-card__share-button {
+  width: 100%;
+  min-height: 54px;
+
+  margin-top: 10px;
+  border: 0;
+  border-radius: 14px;
+
+  color: #174b8a;
+  background-color: #dcecff;
+
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}

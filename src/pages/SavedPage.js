@@ -55,7 +55,7 @@ export function SavedPage() {
               경계선 총길이 ${measurement.perimeter?.toLocaleString() ?? '-'}m ·
 
               경계점 ${measurement.pointCount}개
-</span>
+              </span>
 
                 <button class="saved-card__detail-button"
                 type="button"
