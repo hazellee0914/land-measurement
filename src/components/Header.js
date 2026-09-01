@@ -11,6 +11,7 @@ export function Header() {
 
       <button class="header__help"
         type="button"
+        data-help-open-button
         aria-label="사용 방법 보기"
       >?</button>
     </header>

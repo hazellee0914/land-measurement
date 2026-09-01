@@ -6,6 +6,7 @@ import {
 import { GpsCard } from '../components/GpsCard.js';
 import { getCurrentPosition } from '../services/gpsService.js';
 import { savePosition } from '../services/positionService.js';
+import { HelpModal, initHelpModal } from '../components/HelpModal.js';
 
 export function HomePage() {
   return `
@@ -21,6 +22,7 @@ export function HomePage() {
       ${GpsCard()}
     </main>
     ${BottomNavigation()}
+    ${HelpModal()}
   </div>
   
   `;
@@ -30,6 +32,8 @@ export function HomePage() {
 export function initHomePage(navigate) {
   // 하단 측정·목록·설정 버튼 연결
   initBottomNavigation(navigate);
+  initHelpModal();
+
   // 요소 찾기
   const locationButton = document.querySelector('[data-location-button]');
 

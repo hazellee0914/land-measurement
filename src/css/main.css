@@ -9,6 +9,7 @@
 @import url('./pages/saved.css');
 @import url('./pages/settings.css');
 @import url('./pages/saved-detail.css');
+@import url('./components/help-modal.css');
 
 html {
   font-family:
