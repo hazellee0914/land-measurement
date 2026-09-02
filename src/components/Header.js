@@ -4,7 +4,9 @@ export function Header() {
       <button
       class="header__button"
       type="button"
+      data-menu-open-button
       aria-label="전체 메뉴 열기"
+      aria-expanded="false"
       >☰</button>
       
       <h1 class="header__title">토지면적 측정</h1>
