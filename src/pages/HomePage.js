@@ -8,18 +8,28 @@ import { getCurrentPosition } from '../services/gpsService.js';
 import { savePosition } from '../services/positionService.js';
 import { HelpModal, initHelpModal } from '../components/HelpModal.js';
 import { SideMenu, initSideMenu } from '../components/SideMenu.js';
+import { createMap, updateMapPosition } from '../services/mapService.js';
 
 export function HomePage() {
   return `
   <div class="home-page">${Header()}
     <main class="home-page__content">
-      <section class="map-preview" aria-label="현재 위치 지도">
-      <p class="map-preview__message" data-map-message>
-          📍 현재 위치입니다
-      </p>
+    <section
+      class="map-preview-wrapper"
+      aria-label="현재 위치 지도"
+    >
+      <div
+        id="home-map"
+        class="map-preview"
+      ></div>
 
-      <div class="map-preview__location" aria-label="현재 위치"></div>
-      </section>
+      <p
+        class="map-preview__message"
+        data-map-message
+      >
+        📍 기본 위치입니다
+      </p>
+    </section>
       ${GpsCard()}
     </main>
     ${BottomNavigation()}
@@ -54,6 +64,8 @@ export function initHomePage(navigate) {
 
   const gpsCard = document.querySelector('.gps-card');
 
+  const mapElement = document.querySelector('#home-map');
+
   // 나머지 요소 찾기...
   if (
     !locationButton ||
@@ -63,20 +75,15 @@ export function initHomePage(navigate) {
     !gpsDescription ||
     !gpsIcon ||
     !gpsCard ||
-    !mapMessage
+    !mapMessage ||
+    !mapElement
   ) {
-    console.error('홈 화면 요소를 찾을 수 없습니다.', {
-      locationButton,
-      startButton,
-      demoButton,
-      gpsTitle,
-      gpsDescription,
-      gpsIcon,
-      gpsCard,
-      mapMessage,
-    });
+    console.error('홈 화면 요소를 찾을 수 없습니다.');
     return;
   }
+
+  // 요소가 모두 존재하는지 확인한 다음 지도 생성
+  const homeMap = createMap(mapElement);
 
   locationButton.addEventListener('click', async () => {
     // GPS 확인 기능
@@ -92,6 +99,11 @@ export function initHomePage(navigate) {
       const longitude = position.coords.longitude;
 
       savePosition({
+        latitude,
+        longitude,
+      });
+
+      updateMapPosition(homeMap, {
         latitude,
         longitude,
       });
@@ -136,10 +148,15 @@ export function initHomePage(navigate) {
   });
 
   demoButton.addEventListener('click', () => {
-    savePosition({
+    const defaultPosition = {
       latitude: 37.5665,
       longitude: 126.978,
-    });
+    };
+
+    savePosition(defaultPosition);
+    updateMapPosition(homeMap, defaultPosition);
+
+    mapMessage.textContent = '📍 현재 위치입니다';
 
     // 기본 위치 기능
     // 실패 아이콘을 체크 아이콘으로 변경

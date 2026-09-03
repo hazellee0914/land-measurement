@@ -22,15 +22,34 @@ export function createMap(element, position = DEFAULT_POSITION) {
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  L.circleMarker([position.latitude, position.longitude], {
-    radius: 9,
-    color: '#ffffff',
-    weight: 3,
-    fillColor: '#1976d2',
-    fillOpacity: 1,
-  }).addTo(map);
+  const locationMarker = L.circleMarker(
+    [position.latitude, position.longitude],
+    {
+      radius: 9,
+      color: '#ffffff',
+      weight: 3,
+      fillColor: '#1976d2',
+      fillOpacity: 1,
+    },
+  ).addTo(map);
+
+  map.locationMarker = locationMarker;
 
   return map;
+}
+
+export function updateMapPosition(map, position) {
+  if (!map || !position) {
+    return;
+  }
+
+  const latLng = [position.latitude, position.longitude];
+
+  map.setView(latLng, 17);
+
+  if (map.locationMarker) {
+    map.locationMarker.setLatLng(latLng);
+  }
 }
 
 export function createBoundaryPreviewMap(element, boundaryPoints) {
