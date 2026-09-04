@@ -30,7 +30,7 @@ export function MeasurementPage() {
           data-undo-button
           disabled
         >
-         ↶ 실행 취소
+        ↶ 실행 취소
         </button>
 
         <button class="measurement-controls__complete"
