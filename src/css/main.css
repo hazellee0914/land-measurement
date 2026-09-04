@@ -11,6 +11,7 @@
 @import url('./pages/saved-detail.css');
 @import url('./components/help-modal.css');
 @import url('./components/side-menu.css');
+@import url('./pages/address-search.css');
 
 html {
   font-family:

@@ -104,3 +104,24 @@
 .gps-card.is-error .gps-card__title {
   color: #c9363e;
 }
+
+.gps-card__address-button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 12px;
+  padding: 10px 14px;
+
+  border: 1px solid #16833b;
+  border-radius: 14px;
+
+  color: #16833b;
+  background-color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gps-card__address-button:hover {
+  background-color: #f0f8f2;
+}

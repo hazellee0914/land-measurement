@@ -32,6 +32,14 @@ export function GpsCard() {
       </button>
 
       <button
+        class="gps-card__address-button"
+        type="button"
+        data-address-search-button
+      >
+        🔍 주소로 찾아서 측정하기
+      </button>
+
+      <button
         class="gps-card__demo-button"
         type="button"
         data-demo-button

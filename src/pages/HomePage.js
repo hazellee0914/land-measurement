@@ -66,11 +66,16 @@ export function initHomePage(navigate) {
 
   const mapElement = document.querySelector('#home-map');
 
+  const addressSearchButton = document.querySelector(
+    '[data-address-search-button]',
+  );
+
   // 나머지 요소 찾기...
   if (
     !locationButton ||
     !startButton ||
     !demoButton ||
+    !addressSearchButton ||
     !gpsTitle ||
     !gpsDescription ||
     !gpsIcon ||
@@ -180,5 +185,9 @@ export function initHomePage(navigate) {
     }
 
     navigate('/measurement');
+  });
+
+  addressSearchButton.addEventListener('click', () => {
+    navigate('/address-search');
   });
 }
