@@ -15,11 +15,6 @@ import { SavedPage, initSavedPage } from './pages/SavedPage.js';
 
 import { SettingsPage, initSettingsPage } from './pages/SettingsPage.js';
 
-import {
-  AddressSearchPage,
-  initAddressSearchPage,
-} from './pages/AddressSearchPage.js';
-
 export const routes = {
   '/': {
     page: HomePage,
@@ -49,9 +44,5 @@ export const routes = {
   '/saved-detail': {
     page: SavedDetailPage,
     init: initSavedDetailPage,
-  },
-  '/address-search': {
-    page: AddressSearchPage,
-    init: initAddressSearchPage,
   },
 };
