@@ -10,6 +10,8 @@ import {
 
 import { AREA_UNIT, getAreaUnit } from '../services/settingsService.js';
 
+import { DeleteConfirmModal } from '../components/DeleteConfirmModal.js';
+
 function formatSavedDate(savedAt) {
   return new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
@@ -94,6 +96,7 @@ export function SavedPage() {
       </main>
 
           ${BottomNavigation('saved')}
+          ${DeleteConfirmModal()}
 
     </div>
   `;
@@ -102,38 +105,69 @@ export function SavedPage() {
 export function initSavedPage(navigate) {
   const backButton = document.querySelector('[data-saved-back-button]');
 
-  if (!backButton) {
-    return;
-  }
-
-  initBottomNavigation(navigate);
+  const deleteModal = document.querySelector('[data-delete-modal]');
+  const cancelDeleteButton = document.querySelector('[data-delete-cancel]');
+  const confirmDeleteButton = document.querySelector('[data-delete-confirm]');
 
   const deleteButtons = document.querySelectorAll(
     '[data-delete-measurement-id]',
   );
 
+  const detailButtons = document.querySelectorAll('[data-view-measurement-id]');
+
+  if (
+    !backButton ||
+    !deleteModal ||
+    !cancelDeleteButton ||
+    !confirmDeleteButton
+  ) {
+    console.error('저장 목록 화면 요소를 찾을 수 없습니다.');
+    return;
+  }
+
+  initBottomNavigation(navigate);
+
+  let selectedMeasurementId = null;
+
+  // 삭제 모달 열기
   deleteButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      const shouldDelete = window.confirm('이 측정 결과를 삭제하시겠습니까?');
+      selectedMeasurementId = Number(button.dataset.deleteMeasurementId);
 
-      if (!shouldDelete) {
-        return;
-      }
-
-      const measurementId = Number(button.dataset.deleteMeasurementId);
-
-      deleteSavedMeasurement(measurementId);
-
-      navigate('/saved');
+      deleteModal.hidden = false;
+      document.body.classList.add('is-modal-open');
     });
   });
 
+  // 삭제 취소
+  cancelDeleteButton.addEventListener('click', () => {
+    selectedMeasurementId = null;
+
+    deleteModal.hidden = true;
+    document.body.classList.remove('is-modal-open');
+  });
+
+  // 삭제 확인
+  confirmDeleteButton.addEventListener('click', () => {
+    if (selectedMeasurementId === null) {
+      return;
+    }
+
+    deleteSavedMeasurement(selectedMeasurementId);
+
+    selectedMeasurementId = null;
+    deleteModal.hidden = true;
+    document.body.classList.remove('is-modal-open');
+
+    navigate('/saved');
+  });
+
+  // 홈으로 이동
   backButton.addEventListener('click', () => {
     navigate('/');
   });
 
-  const detailButtons = document.querySelectorAll('[data-view-measurement-id]');
-
+  // 상세 화면 이동
   detailButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const measurementId = button.dataset.viewMeasurementId;
