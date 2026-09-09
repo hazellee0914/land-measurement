@@ -12,16 +12,20 @@
 @import url('./components/help-modal.css');
 @import url('./components/side-menu.css');
 
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
 html {
   font-family:
     'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
 
 body {
-  margin: 0;
   padding: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f4f7f4;
+  background-color: #363941;
 }
 
 button,
@@ -29,10 +33,6 @@ input,
 select,
 textarea {
   font: inherit;
-}
-
-main {
-  /* padding: 20px; */
 }
 
 button {
@@ -46,4 +46,12 @@ button {
 
 [hidden] {
   display: none !important;
+}
+
+#app {
+  width: 100%;
+  max-width: var(--app-width);
+  min-height: 100dvh;
+  margin: 0 auto;
+  background-color: #f4f7f4;
 }

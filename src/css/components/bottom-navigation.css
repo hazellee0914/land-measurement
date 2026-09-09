@@ -12,6 +12,7 @@
 
   border-top: 1px solid #e4e8e4;
   background-color: #ffffff;
+  flex-shrink: 0;
 }
 
 .bottom-navigation__item {

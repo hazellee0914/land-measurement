@@ -1,5 +1,6 @@
 .header {
   display: grid;
+
   grid-template-columns: 48px 1fr 48px;
   align-items: center;
 
@@ -8,6 +9,10 @@
 
   background-color: #ffffff;
   border-bottom: 1px solid #e5e7e5;
+  position: relative;
+  z-index: 1000;
+  flex-shrink: 0;
+  height: 60px;
 }
 
 .header__title {
