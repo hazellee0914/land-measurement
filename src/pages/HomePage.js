@@ -84,6 +84,19 @@ export function initHomePage(navigate) {
 
   // 요소가 모두 존재하는지 확인한 다음 지도 생성
   const homeMap = createMap(mapElement);
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      homeMap.invalidateSize({
+        pan: false,
+      });
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    homeMap.invalidateSize({
+      pan: false,
+    });
+  });
 
   locationButton.addEventListener('click', async () => {
     // GPS 확인 기능
