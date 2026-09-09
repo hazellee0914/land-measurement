@@ -21,6 +21,8 @@ body {
 html {
   font-family:
     'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -54,4 +56,51 @@ button {
   min-height: 100dvh;
   margin: 0 auto;
   background-color: #f4f7f4;
+}
+
+@media (max-height: 480px) {
+  .home-page {
+    --bottom-navigation-height: 64px;
+  }
+
+  .home-page .header {
+    min-height: 56px;
+    height: 56px;
+  }
+
+  .home-page .bottom-navigation {
+    height: 64px;
+  }
+
+  .home-page .gps-card {
+    margin: 0 10px 6px;
+    padding: 10px 14px;
+    border-radius: 20px;
+  }
+
+  .home-page .gps-card__icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 4px;
+    font-size: 20px;
+  }
+
+  .home-page .gps-card__title {
+    font-size: 19px;
+  }
+
+  .home-page .gps-card__description {
+    margin: 2px 0 8px;
+    font-size: 13px;
+  }
+
+  .home-page .gps-card__location-button,
+  .home-page .gps-card__start-button {
+    min-height: 46px;
+    padding: 10px 16px;
+  }
+
+  .home-page .gps-card__start-button {
+    margin-top: 6px;
+  }
 }

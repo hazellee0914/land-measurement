@@ -4,7 +4,7 @@
 
   width: 100%;
   max-width: var(--app-width);
-  height: 100dvh;
+  height: 100svh;
   min-height: 0;
   margin: 0 auto;
 
@@ -99,4 +99,51 @@
   width: 100%;
   flex-shrink: 0;
   transform: none;
+}
+
+@media (max-height: 800px) {
+  .home-page {
+    --bottom-navigation-height: 64px;
+  }
+
+  .home-page .header {
+    min-height: 56px;
+    height: 56px;
+  }
+
+  .home-page .bottom-navigation {
+    height: 64px;
+  }
+
+  .home-page .gps-card {
+    margin: 0 12px 10px;
+    padding: 14px 16px;
+    border-radius: 20px;
+  }
+
+  .home-page .gps-card__icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+    font-size: 24px;
+  }
+
+  .home-page .gps-card__title {
+    font-size: 21px;
+  }
+
+  .home-page .gps-card__description {
+    margin: 4px 0 12px;
+    font-size: 13px;
+  }
+
+  .home-page .gps-card__location-button,
+  .home-page .gps-card__start-button {
+    min-height: 46px;
+    padding: 10px 16px;
+  }
+
+  .home-page .gps-card__start-button {
+    margin-top: 8px;
+  }
 }
